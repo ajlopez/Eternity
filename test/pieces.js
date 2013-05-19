@@ -29,7 +29,7 @@ for (var x = 2; x < width - 2; x++)
         assert.equal(results.length, 4);
     }
 
-// match piece on corner
+// match piece on top left corner
 
 var result = puzzle.match(1, 1, [1, 2, 0, 0]);
 assert.ok(result);
@@ -39,6 +39,17 @@ assert.equal(result[0][0], 0);
 assert.equal(result[0][1], 0);
 assert.equal(result[0][2], 1);
 assert.equal(result[0][3], 2);
+
+// match piece on top right corner
+
+var result = puzzle.match(16, 1, [1, 2, 0, 0]);
+assert.ok(result);
+assert.ok(Array.isArray(result));
+assert.equal(result.length, 1);
+assert.equal(result[0][0], 2);
+assert.equal(result[0][1], 0);
+assert.equal(result[0][2], 0);
+assert.equal(result[0][3], 1);
 
 // match piece on border
 
@@ -50,3 +61,18 @@ assert.equal(result[0][0], 3);
 assert.equal(result[0][1], 0);
 assert.equal(result[0][2], 1);
 assert.equal(result[0][3], 2);
+
+// match pieces at top left corner
+
+var matches = puzzle.matchPieces(1, 1, [[1, 2, 0, 0], [3, 4, 0, 0], [1, 2, 3, 4]]);
+assert.ok(matches);
+assert.ok(Array.isArray(matches));
+assert.equal(matches.length, 2);
+assert.equal(matches[0][0], 0);
+assert.equal(matches[0][1], 0);
+assert.equal(matches[0][2], 1);
+assert.equal(matches[0][3], 2);
+assert.equal(matches[1][0], 0);
+assert.equal(matches[1][1], 0);
+assert.equal(matches[1][2], 3);
+assert.equal(matches[1][3], 4);

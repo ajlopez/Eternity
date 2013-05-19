@@ -6,7 +6,7 @@ var eternity = require('../'),
 
 var puzzle = eternity.createPuzzle();
 
-// accepts gray pieces
+// match gray pieces
 
 var width = puzzle.getWidth();
 var height = puzzle.getHeight();
@@ -19,8 +19,14 @@ for (var x = 0; x < width; x++)
             assert.ok(puzzle.match(x, y, [0, 0, 0, 0]));
     }
 
-// accepts four color piece in inner area
+// match four color piece in inner area
 
 for (var x = 2; x < width - 2; x++)
-    for (var y = 2; y < height - 2; y++)
-        assert.ok(puzzle.match(x, y, [1, 2, 3, 4]));
+    for (var y = 2; y < height - 2; y++) {
+        var results = puzzle.match(x, y, [1, 2, 3, 4]);
+        assert.ok(results);
+        assert.ok(Array.isArray(results));
+        assert.equal(results.length, 4);
+    }
+
+// 

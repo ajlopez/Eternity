@@ -62,6 +62,13 @@ assert.equal(result[0][1], 0);
 assert.equal(result[0][2], 1);
 assert.equal(result[0][3], 2);
 
+// match four colour piece in inner cell
+
+var result = puzzle.match(3, 4, [1, 2, 3, 4]);
+assert.ok(result);
+assert.ok(Array.isArray(result));
+assert.equal(result.length, 4);
+
 // match pieces at top left corner
 
 var matches = puzzle.matchPieces(1, 1, [[1, 2, 0, 0], [3, 4, 0, 0], [1, 2, 3, 4]]);

@@ -29,4 +29,14 @@ for (var x = 2; x < width - 2; x++)
         assert.equal(results.length, 4);
     }
 
-// 
+// match piece on corner
+
+var result = puzzle.match(1, 1, [1, 2, 0, 0]);
+assert.ok(result);
+assert.ok(Array.isArray(result));
+assert.equal(result.length, 1);
+assert.equal(result[0][0], 0);
+assert.equal(result[0][1], 0);
+assert.equal(result[0][2], 1);
+assert.equal(result[0][3], 2);
+

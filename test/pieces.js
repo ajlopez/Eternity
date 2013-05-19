@@ -40,3 +40,13 @@ assert.equal(result[0][1], 0);
 assert.equal(result[0][2], 1);
 assert.equal(result[0][3], 2);
 
+// match piece on border
+
+var result = puzzle.match(2, 1, [1, 2, 3, 0]);
+assert.ok(result);
+assert.ok(Array.isArray(result));
+assert.equal(result.length, 1);
+assert.equal(result[0][0], 3);
+assert.equal(result[0][1], 0);
+assert.equal(result[0][2], 1);
+assert.equal(result[0][3], 2);

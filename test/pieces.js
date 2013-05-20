@@ -12,12 +12,8 @@ var width = puzzle.getWidth();
 var height = puzzle.getHeight();
 
 for (var x = 0; x < width; x++)
-    for (var y = 0; y < height; y++) {
-        if (x == 0 || x == width - 1 || y == 0 || y == height - 1)
-            assert.equal(puzzle.match(x, y, [0, 0, 0, 0]), null);
-        else
-            assert.ok(puzzle.match(x, y, [0, 0, 0, 0]));
-    }
+    for (var y = 0; y < height; y++)
+        assert.equal(puzzle.match(x, y, [0, 0, 0, 0]), null);
 
 // match four color piece in inner area
 
@@ -83,3 +79,11 @@ assert.equal(matches[1][0], 0);
 assert.equal(matches[1][1], 0);
 assert.equal(matches[1][2], 3);
 assert.equal(matches[1][3], 4);
+
+// match set of corner pieces
+
+var matches = puzzle.matchSet([1, 2, 0, 0], [3, 4, 0, 0]);
+assert.ok(matches);
+assert.ok(Array.isArray(matches));
+// assert.equal(matches.length, 8);
+

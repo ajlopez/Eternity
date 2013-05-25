@@ -3,14 +3,25 @@
 <title>Eternity II Browser Sample</title>
 <script src="simpleboard.js"></script>
 <script src="../../lib/eternity.js"></script>
+<style>
+.canvas {
+    float: left;
+    margin-right: 5px;
+}
+</style>
 </head>
 <body>
 <h1>Eternity II Browser Sample</h1>
 <div>
 <a href="#" onclick="solvePuzzle();">Solve</a>
 </div>
-<div>
-<canvas id="mycanvas" width="400" height="400"/>
+<div class="canvas">
+<h2>Board</h2>
+<canvas id="mycanvas" width="480" height="480"/>
+</div>
+<div class="canvas">
+<h2>Pieces</h2>
+<canvas id="mycanvas2" width="480" height="480"/>
 </div>
 <script>
 
@@ -40,9 +51,6 @@ function shuffle(array) {
 function getRandomColor() {
     return Math.floor(Math.random() * 256);
 }
-
-var ncolors = 14;
-var colors = [];
 
 function generateColors(colors, ncolors) {
     colors[0] = [128+64+32, 128+64+32, 128+64+32];
@@ -89,13 +97,17 @@ function drawCell(ctx, x, y, width, height, piece) {
     ctx.fill();
 }
 
+var width = 8;
+var height = 8;
+var ncolors = 14;
+var colors = [];
+
 generateColors(colors, ncolors);
-var puzzle = eternity.createPuzzle(8, 8);
-var width = puzzle.getWidth();
-var height = puzzle.getHeight();
+var puzzle = eternity.createPuzzle(width, height);
 puzzle.generate(ncolors);
 
 var canvas = document.getElementById("mycanvas");
+var canvas2 = document.getElementById("mycanvas2");
 
 function drawPuzzle(canvas, puzzle) {
     var cwidth = canvas.width;

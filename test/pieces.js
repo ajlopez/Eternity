@@ -65,6 +65,11 @@ assert.ok(result);
 assert.ok(Array.isArray(result));
 assert.equal(result.length, 4);
 
+// match piece with gray in inner cell
+
+var result = puzzle.match(3, 4, [0, 2, 3, 4]);
+assert.equal(result, null);
+
 // match pieces at top left corner
 
 var matches = puzzle.matchPieces(1, 1, [[1, 2, 0, 0], [3, 4, 0, 0], [1, 2, 3, 4]]);
@@ -82,8 +87,17 @@ assert.equal(matches[1][3], 4);
 
 // match set of corner pieces
 
-var matches = puzzle.matchSet([1, 2, 0, 0], [3, 4, 0, 0]);
+var matches = puzzle.matchSet([[1, 2, 0, 0], [3, 4, 0, 0]]);
 assert.ok(matches);
 assert.ok(Array.isArray(matches));
-// assert.equal(matches.length, 8);
+assert.equal(matches.length, 4);
+
+matches.forEach(function(match) {
+    assert.ok(match);
+    assert.ok(match.x);
+    assert.ok(match.y);
+    assert.ok(match.matches);
+    assert.ok(Array.isArray(match.matches));
+    assert.equal(match.matches.length, 2);
+});
 

@@ -18,7 +18,7 @@ a {
 <h1>Eternity II Browser Sample</h1>
 <div>
 <a href="#" onclick="generatePuzzle();">Generate</a>
-<a href="#" onclick="solvePuzzle();">Solve</a>
+<a href="#" onclick="clearPuzzle(); setTimeout(solvePuzzle);">Solve</a>
 <a href="#" onclick="clearPuzzle();">Clear</a>
 </div>
 <div class="canvas">
@@ -35,7 +35,7 @@ function solvePuzzle() {
     var newpuzzle = eternity.createPuzzle(width, height);
     var newpieces = pieces.slice();
     shuffle(newpieces);
-    if (newpuzzle.solve(newpieces, function(puzzle) { drawPuzzle(canvas, puzzle); }))
+    if (newpuzzle.solve(newpieces))
         drawPuzzle(canvas, newpuzzle);
     else
         drawPuzzle(canvas, puzzle);

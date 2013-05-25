@@ -47,3 +47,10 @@ for (var x = 0; x < width; x++)
             assert.equal(piece, null);
     }
 
+// create small puzzle initial position
+
+var spuzzle = eternity.createPuzzle(6, 4);
+assert.ok(spuzzle);
+assert.equal(spuzzle.getWidth(), 6);
+assert.equal(spuzzle.getHeight(), 4);
+

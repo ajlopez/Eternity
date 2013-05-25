@@ -8,12 +8,18 @@
     float: left;
     margin-right: 5px;
 }
+
+a {
+    margin-right: 5px;
+}
 </style>
 </head>
 <body>
 <h1>Eternity II Browser Sample</h1>
 <div>
+<a href="#" onclick="generatePuzzle();">Generate</a>
 <a href="#" onclick="solvePuzzle();">Solve</a>
+<a href="#" onclick="clearPuzzle();">Clear</a>
 </div>
 <div class="canvas">
 <h2>Board</h2>
@@ -27,12 +33,47 @@
 
 function solvePuzzle() {
     var newpuzzle = eternity.createPuzzle(width, height);
-    var pieces = puzzle.getPieces();
-    shuffle(pieces);
-    if (newpuzzle.solve(pieces, function(puzzle) { drawPuzzle(canvas, puzzle); }))
+    var newpieces = pieces.slice();
+    shuffle(newpieces);
+    if (newpuzzle.solve(newpieces, function(puzzle) { drawPuzzle(canvas, puzzle); }))
         drawPuzzle(canvas, newpuzzle);
     else
         drawPuzzle(canvas, puzzle);
+}
+
+function clearPuzzle() {
+    puzzle.initialize();
+    drawPuzzle(canvas, puzzle);
+}
+
+var puzzle;
+var ppuzzle;
+var pieces;
+
+var width = 10;
+var height = 10;
+var ncolors = 20;
+var colors = [];
+
+var canvas = document.getElementById("mycanvas");
+var canvas2 = document.getElementById("mycanvas2");
+
+function generatePuzzle() {
+    generateColors(colors, ncolors);
+    puzzle = eternity.createPuzzle(width, height);
+    puzzle.generate(ncolors);
+    pieces = puzzle.getPieces();
+    shuffle(pieces);
+    puzzle.initialize();
+    ppuzzle = eternity.createPuzzle(width, height);
+    ppuzzle.clear();
+
+    for (var x = 0; x < width - 2; x++)
+        for (var y = 0; y < height - 2; y++)
+            ppuzzle.putPiece(x + 1, y + 1, pieces[x + y * (width - 2)]);
+
+    drawPuzzle(canvas, puzzle);
+    drawPuzzle(canvas2, ppuzzle);
 }
 
 // http://stackoverflow.com/questions/2450954/how-to-randomize-a-javascript-array
@@ -97,17 +138,7 @@ function drawCell(ctx, x, y, width, height, piece) {
     ctx.fill();
 }
 
-var width = 8;
-var height = 8;
-var ncolors = 14;
-var colors = [];
-
-generateColors(colors, ncolors);
-var puzzle = eternity.createPuzzle(width, height);
-puzzle.generate(ncolors);
-
-var canvas = document.getElementById("mycanvas");
-var canvas2 = document.getElementById("mycanvas2");
+generatePuzzle();
 
 function drawPuzzle(canvas, puzzle) {
     var cwidth = canvas.width;
@@ -131,7 +162,6 @@ function drawPuzzle(canvas, puzzle) {
     }
 }
 
-drawPuzzle(canvas, puzzle);
 
 </script>
 

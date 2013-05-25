@@ -9,7 +9,7 @@ assert.ok(puzzle);
 assert.equal(puzzle.getWidth(), 18);
 assert.equal(puzzle.getHeight(), 18);
 
-var pieces = puzzle.getPieces();
+var pieces = puzzle.getPiecePositions();
 
 assert.ok(pieces);
 assert.equal(pieces.length, 17 * 4);

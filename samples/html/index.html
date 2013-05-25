@@ -7,15 +7,41 @@
 <body>
 <h1>Eternity II Browser Sample</h1>
 <div>
-<canvas id="mycanvas" width="500" height="500"/>
+<a href="#" onclick="solvePuzzle();">Solve</a>
+</div>
+<div>
+<canvas id="mycanvas" width="400" height="400"/>
 </div>
 <script>
+
+function solvePuzzle() {
+    var newpuzzle = eternity.createPuzzle(width, height);
+    var pieces = puzzle.getPieces();
+    shuffle(pieces);
+    if (newpuzzle.solve(pieces, function(puzzle) { drawPuzzle(canvas, puzzle); }))
+        drawPuzzle(canvas, newpuzzle);
+    else
+        drawPuzzle(canvas, puzzle);
+}
+
+// http://stackoverflow.com/questions/2450954/how-to-randomize-a-javascript-array
+
+function shuffle(array) {
+    for (var i = array.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+
+    return array;
+}
 
 function getRandomColor() {
     return Math.floor(Math.random() * 256);
 }
 
-var ncolors = 20;
+var ncolors = 14;
 var colors = [];
 
 function generateColors(colors, ncolors) {
@@ -64,7 +90,7 @@ function drawCell(ctx, x, y, width, height, piece) {
 }
 
 generateColors(colors, ncolors);
-var puzzle = eternity.createPuzzle();
+var puzzle = eternity.createPuzzle(8, 8);
 var width = puzzle.getWidth();
 var height = puzzle.getHeight();
 puzzle.generate(ncolors);

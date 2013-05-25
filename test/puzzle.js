@@ -17,16 +17,7 @@ assert.equal(positions.length, 17 * 4);
 var pieces = puzzle.getPieces();
 
 assert.ok(pieces);
-assert.equal(pieces.length, 17 * 4);
-pieces.forEach(function (piece) {
-    assert.ok(piece);
-    assert.ok(Array.isArray(piece));
-    assert.equal(piece.length, 4);
-    assert.equal(piece[0], 0);
-    assert.equal(piece[1], 0);
-    assert.equal(piece[2], 0);
-    assert.equal(piece[3], 0);
-});
+assert.equal(pieces.length, 0);
 
 var width = puzzle.getWidth();
 var height = puzzle.getHeight();

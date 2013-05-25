@@ -11,7 +11,7 @@ var pieces = puzzle.getPieces();
 
 assert.ok(pieces);
 assert.ok(Array.isArray(pieces));
-assert.equal(pieces.length, 3 * 3);
+assert.equal(pieces.length, 0);
 
 // it is a valid solution
 
@@ -26,7 +26,7 @@ var pieces = puzzle.getPieces();
 
 assert.ok(pieces);
 assert.ok(Array.isArray(pieces));
-assert.equal(pieces.length, 4 * 4);
+assert.equal(pieces.length, 2 * 2);
 
 // it is a valid solution
 
@@ -41,7 +41,7 @@ var pieces = puzzle.getPieces();
 
 assert.ok(pieces);
 assert.ok(Array.isArray(pieces));
-assert.equal(pieces.length, 5 * 5);
+assert.equal(pieces.length, 3 * 3);
 
 // it is a valid solution
 
@@ -56,7 +56,7 @@ var pieces = puzzle.getPieces();
 
 assert.ok(pieces);
 assert.ok(Array.isArray(pieces));
-assert.equal(pieces.length, 18 * 18);
+assert.equal(pieces.length, 16 * 16);
 
 // it is a valid solution
 

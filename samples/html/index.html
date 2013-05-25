@@ -70,23 +70,30 @@ var height = puzzle.getHeight();
 puzzle.generate(ncolors);
 
 var canvas = document.getElementById("mycanvas");
-var cwidth = canvas.width;
-var cheight = canvas.height;
-var ctx = canvas.getContext("2d");
 
-var dwidth = cwidth / width;
-var dheight = cheight / height;
+function drawPuzzle(canvas, puzzle) {
+    var cwidth = canvas.width;
+    var cheight = canvas.height;
+    var ctx = canvas.getContext("2d");
+    
+    ctx.clearRect(0, 0, cwidth, cheight);
 
-var dwidth = Math.min(dwidth, dheight);
-var dheight = dwidth;
+    var dwidth = cwidth / width;
+    var dheight = cheight / height;
 
-var positions = puzzle.getPiecePositions();
-var npositions = positions.length;
+    var dwidth = Math.min(dwidth, dheight);
+    var dheight = dwidth;
 
-for (var k = 0; k < npositions; k++) {
-    var position = positions[k];
-    drawCell(ctx, position.x * dwidth, position.y * dheight, dwidth, dheight, position.content);
+    var positions = puzzle.getPiecePositions();
+    var npositions = positions.length;
+
+    for (var k = 0; k < npositions; k++) {
+        var position = positions[k];
+        drawCell(ctx, position.x * dwidth, position.y * dheight, dwidth, dheight, position.content);
+    }
 }
+
+drawPuzzle(canvas, puzzle);
 
 </script>
 
